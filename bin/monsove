@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+
+require 'rubygems'
+
+# TODO: take off when build the Monsove Gem.
+# require 'rufus/scheduler'
+
+require 'monsove'
+
+Monsove::Cli.start(ARGV)
