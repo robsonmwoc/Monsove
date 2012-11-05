@@ -26,7 +26,7 @@ module Monsove
 
     protected
 
-    # Protected: Dump database, compress and upload it.
+    # Internal: Dump database, compress and upload it.
     #
     # job - the job to execute.
     #

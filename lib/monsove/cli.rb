@@ -45,6 +45,7 @@ module Monsove
     method_option :backup_file, :type => :string, :aliases => "-b", :required => true,
                   :desc => "Name of the file to be restored"
     def restore
+      # TODO: Move all this code to Monsove::Restore
       config  = Configuration.parse_jobfile(options[:config])
       engine  = config.delete('engine')
 
