@@ -10,7 +10,8 @@ module Monsove
       # @option opts [String] :ssh_key  the public ssh key file.
       #
       # @return [Storage]
-      def initialize(opts)
+      def initialize(opts=nil)
+        return nil if opts.nil?
         @server   = opts['server']
         @username = opts['username']
         @ssh_key  = opts['ssh_key']
