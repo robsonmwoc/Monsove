@@ -5,6 +5,7 @@ require 'tmpdir'
 require 'logger'
 require 'fileutils'
 require 'yaml'
+require 'active_support/configurable'
 require "monsove/version"
 
 LOGGER = Logger.new(STDOUT)

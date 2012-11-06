@@ -17,7 +17,10 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "thor"
   gem.add_dependency "fog", "~> 1.6.0"
-  gem.add_development_dependency "tomdoc"
+  gem.add_dependency 'activesupport', ['>= 3.0.0']
 
-  gem.add_development_dependency "rspec"
+  gem.add_development_dependency 'bundler', ['>= 1.0.0']
+  gem.add_development_dependency 'rake', ['>= 0']
+  gem.add_development_dependency 'rspec', ['>= 0']
+  gem.add_development_dependency 'rdoc', ['>= 0']
 end
