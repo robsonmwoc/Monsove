@@ -5,16 +5,11 @@ module Monsove
 
       # Initialize the storage object.
       #
-      # @option opts [String] :server   the server ip or domain name.
-      # @option opts [String] :username the linux storage user name.
-      # @option opts [String] :ssh_key  the public ssh key file.
-      #
       # @return [Storage]
-      def initialize(opts=nil)
-        return nil if opts.nil?
-        @server   = opts['server']
-        @username = opts['username']
-        @ssh_key  = opts['ssh_key']
+      def initialize
+        @server   = Monsove.config.server
+        @username = Monsove.config.username
+        @ssh_key  = Monsove.config.ssh_key
       end
 
       # Parse the given location into a bucket and a prefix.

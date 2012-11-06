@@ -11,8 +11,14 @@ require "monsove/version"
 LOGGER = Logger.new(STDOUT)
 
 module Monsove
-  def self.logger
-    LOGGER
+  class << self
+    def logger
+      LOGGER
+    end
+
+    def storage
+      @storage ||= config.storage.new
+    end
   end
 
   # An abstract interface module to validate the implementation of different

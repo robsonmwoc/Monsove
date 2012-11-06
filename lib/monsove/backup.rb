@@ -13,9 +13,6 @@ module Monsove
     def initialize(config_file)
       @config = Configuration.parse_config(config_file)
 
-      engine = @config.delete("engine")
-      @storage = Storage::Base.get_instance(engine, @config[engine])
-
       @filesystem = Filesystem.new
       @db = DB.new
 
@@ -33,7 +30,7 @@ module Monsove
     # @return [nil]
     def backup(job)
       path     = @filesystem.get_tmp_path
-      location = @storage.parse_location(job['location'])
+      location = Monsove.storage.parse_location(job['location'])
       db       = @db.get_opts(job['db'])
 
       Monsove.logger.info("Starting job for #{db[:host]}:#{db[:port]}/#{db[:db]}")
@@ -42,10 +39,10 @@ module Monsove
       @filesystem.compress(path)
 
       key = "#{location[:prefix]}_#{Time.now.strftime('%m%d%Y_%H%M%S')}.tar.bz2"
-      @storage.upload(location[:bucket], key, path)
+      Monsove.storage.upload(location[:bucket], key, path)
 
       @filesystem.cleanup(path)
-      @storage.cleanup(location[:bucket], location[:prefix], job['versions'])
+      Monsove.storage.cleanup(location[:bucket], location[:prefix], job['versions'])
 
       Monsove.logger.info("Finishing job for #{db[:host]}:#{db[:port]}/#{db[:db]}")
     end
